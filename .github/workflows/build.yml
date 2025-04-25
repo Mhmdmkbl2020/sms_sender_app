@@ -3,7 +3,7 @@ name: Build Windows EXE
 on:
   push:
     tags:
-      - 'v*.*.*'  # يُشغل عند إضافة تاج مثل v1.0.0
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -20,11 +20,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pyinstaller==6.8.0 pyserial==3.5 PyMuPDF==1.23.5 watchdog==3.0.0
+        pip install -r requirements.txt
 
     - name: Create executable
       run: |
-        pyinstaller --onefile --windowed --icon=assets/icon.ico --add-data "assets/icon.ico;." main.py
+        pyinstaller --onefile --windowed --icon=assets/icon.ico --add-data "assets/icon.ico;assets" main.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
