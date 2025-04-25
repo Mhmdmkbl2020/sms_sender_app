@@ -3,7 +3,7 @@ name: Build Windows EXE
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v*.*.*'  # يُشغل عند إضافة تاج مثل v1.0.0
 
 jobs:
   build:
@@ -20,8 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install pyinstaller pyserial PyMuPDF watchdog
+        pip install pyinstaller==6.8.0 pyserial==3.5 PyMuPDF==1.23.5 watchdog==3.0.0
 
     - name: Create executable
       run: |
